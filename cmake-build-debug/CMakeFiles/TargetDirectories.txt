@@ -1,0 +1,3 @@
+D:/Mirshod/IUT/OOP2/phone-book/cmake-build-debug/CMakeFiles/phone_book.dir
+D:/Mirshod/IUT/OOP2/phone-book/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Mirshod/IUT/OOP2/phone-book/cmake-build-debug/CMakeFiles/rebuild_cache.dir
