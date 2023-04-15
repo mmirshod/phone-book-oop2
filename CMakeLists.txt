@@ -3,4 +3,4 @@ project(phone_book)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(phone_book main.cpp)
+add_executable(phone_book main.cpp Classes.cpp Classes.h)
