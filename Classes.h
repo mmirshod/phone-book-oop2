@@ -9,6 +9,7 @@ private:
 public:
     Person();
     Person(string, string);
+    string getFirstName();
 protected:
 };
 
