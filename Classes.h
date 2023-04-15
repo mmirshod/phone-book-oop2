@@ -1,14 +1,14 @@
-//
-// Created by ENVY on 4/15/2023.
-//
-
-#ifndef PHONE_BOOK_CLASSES_H
-#define PHONE_BOOK_CLASSES_H
-
+#include <string>
+using namespace std;
 
 class Person {
 private:
+    int id;
+    string f_name;
+    string l_name;
 public:
+    Person();
+    Person(string, string);
 protected:
 };
 
@@ -17,6 +17,3 @@ private:
 protected:
 public:
 };
-
-
-#endif //PHONE_BOOK_CLASSES_H
