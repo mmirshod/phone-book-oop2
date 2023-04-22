@@ -1,6 +1,12 @@
-#include <iostream>
+//
+// Created by Mirshod on 4/16/2023.
+//
+#include "Phonebook.h"
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Phonebook phonebook("test_file");
+    phonebook.read_record();
     return 0;
 }
