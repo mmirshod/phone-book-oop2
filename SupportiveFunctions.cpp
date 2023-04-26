@@ -1,7 +1,8 @@
 #include "string"
 #include "fstream"
 #include "vector"
-#include "sstream"
+#include "iostream"
+#include "iomanip"
 using namespace std;
 
 string to_upper(string str){
@@ -38,58 +39,6 @@ int get_number_of_records(string filename) {
 }
 
 
-int get_country_id(string code) {
-    /**
-
-    @brief Returns the country ID associated with the given country code.
-    This function reads a CSV file containing country information and
-    searches for a country with a matching country code. If a match is
-    found, the function returns the associated country ID as an integer.
-    If a match is not found, the function returns 0.
-    @param code A string representing the country code to search for.
-    @return An integer representing the country ID associated with the given country code.
-     Returns 0 if no match is found.
-    */
-
-    string temp, word;
-    vector<string> country;
-    ifstream file(R"(D:\Mirshod\IUT\OOP2\phone-book\countries.csv)");
-
-    while(file >> temp) {
-        country.clear();
-
-        stringstream s(temp);
-        while(getline(s, word, ','))
-            country.push_back(word);
-
-        if(code == country[2])
-            return stoi(country[0]);
-    }
-
-    return 0;
-}
-
-
-int verify_country_code(string code) {
-    string temp, word;
-    vector<string> countries;
-    ifstream file(R"(D:\Mirshod\IUT\OOP2\phone-book\countries.csv)");
-
-
-    while(file >> temp) {
-        countries.clear();
-
-        stringstream s(temp);
-        while(getline(s, word, ','))
-            countries.push_back(word);
-        if(code == countries[2]) {
-            return stoi(countries[3]);
-        }
-    }
-    return 0;
-}
-
-
 bool file_exists(string filename) {
     /**
      * @brief Validate whether file exist or not
@@ -99,4 +48,26 @@ bool file_exists(string filename) {
 
     ifstream fin(filename);
     return fin.good();
+}
+
+int make_choice() {
+    int choice;
+    cout << setfill('=') << setw(35) << "" << endl;
+    cout << setfill(' ') << left << setw(10) << "| Key" << "|"
+         << setw(23) << "Option" << "|" << endl;
+    cout << setfill('=') << setw(35) << "" << endl;
+    cout << setfill(' ') << left << setw(10) << "| 1" << "|"
+         << setw(23) << "Add Contact" << "|" << endl;
+    cout << setfill(' ') << left << setw(10) << "| 2" << "|"
+         << setw(23) << "Find Contact" << "|" << endl;
+    cout << setfill(' ') << left << setw(10) << "| 3" << "|"
+         << setw(23) << "Read All Contacts" << "|" << endl;
+    cout << setfill(' ') << left << setw(10) << "| 4" << "|"
+         << setw(23) << "Delete Contact" << "|" << endl;
+    cout << setfill('-') << setw(35) << "" << endl;
+    cout << setfill(' ') << left << setw(10) << "| 0" << "|"
+         << setw(23) << "Exit" << "|" << endl;
+    cout << setfill('=') << setw(35) << "" << endl;
+    cout << "Enter key: "; cin >> choice;
+    return choice;
 }

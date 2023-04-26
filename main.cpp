@@ -4,9 +4,10 @@
 #include "Phonebook.h"
 
 using namespace std;
-
 int main() {
-    Phonebook phonebook("test_file");
-    phonebook.read_record();
+    Phonebook p("test3");
+    p.create_record();
+    p.read_record();
+
     return 0;
 }

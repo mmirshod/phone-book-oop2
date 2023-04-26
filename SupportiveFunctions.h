@@ -6,10 +6,10 @@
 #define PHONE_BOOK_SUPPORTIVEFUNCTIONS_H
 
 #include "string"
+
 std::string to_upper(std::string);
 int get_number_of_records(std::string);
-int get_country_id(std::string);
-int verify_country_code(std::string);
 bool file_exists(std::string);
+int make_choice();
 
 #endif //PHONE_BOOK_SUPPORTIVEFUNCTIONS_H
