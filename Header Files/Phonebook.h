@@ -16,7 +16,8 @@ private:
 public:
     Phonebook();
     explicit Phonebook(const string&);
-    void setContacts(vector<Contact>);
+
+    [[maybe_unused]] void setContacts(vector<Contact>);
     string getFileName();
     int getNumberOfContacts() const;
     void create_record();

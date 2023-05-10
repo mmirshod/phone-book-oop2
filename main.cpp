@@ -1,12 +1,12 @@
-#include "Phonebook.h"
-#include "Employee.h"
-#include "SupportiveFunctions.h"
+#include "Header Files/Phonebook.h"
+#include "Header Files/Employee.h"
+#include "Header Files/SupportiveFunctions.h"
 #include "iostream"
 
 using namespace std;
 
 int main() {
-    Phonebook p("final_test_3");
+    Phonebook p;
     string name, password;
     Employee *employee;
     int choice;
@@ -88,6 +88,7 @@ int main() {
     // main menu
     while(choice){
         choice = 1;
+        system("clear");
         choice = make_choice_main_menu();
         switch (choice) {
             case 0:
@@ -146,7 +147,6 @@ int main() {
                 system("clear");
                 break;
             default:
-                system("pause");
                 system("clear");
                 cout << "\nInvalid Response. Try Again\n";
                 break;

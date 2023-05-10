@@ -1,12 +1,11 @@
-#include "Contact.h"
-
-#include <utility>
+#include "../Header Files/Contact.h"
 #include "iomanip"
 #include "iostream"
 
 Contact::Contact() = default;
 
 ostream& operator<<(std::ostream &out, const Contact& c) {
+
     cout << setfill(' ') << left << setw(8) << c.id << "|";
     cout << left << setw(22) << c.f_name << "|";
     cout << left << setw(22) << c.l_name << "|";
@@ -42,7 +41,7 @@ void Contact::set_tel_num(std::string number) {
 }
 
 
-void Contact::set_position(std::string position) {
+[[maybe_unused]] void Contact::set_position(std::string position) {
     this->position_ = std::move(position);
 }
 
@@ -68,4 +67,9 @@ string Contact::get_tel_num() {
 
 string Contact::get_position() const {
     return this->position_;
+}
+
+
+void Contact::set_country(const Country& new_country) {
+    this->country = new_country;
 }

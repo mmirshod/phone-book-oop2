@@ -2,7 +2,7 @@
 #include "vector"
 #include "iostream"
 #include "iomanip"
-#include "SupportiveFunctions.h"
+#include "../Header Files/SupportiveFunctions.h"
 
 using namespace std;
 
@@ -76,7 +76,7 @@ int make_choice_main_menu() {
 }
 
 optional <Contact> find_contact(const string& number, Phonebook& p) {
-    fstream fin(p.getFileName());
+    ifstream fin(p.getFileName(), ios::in);
 
     // skip header row
     string temp, field;
@@ -168,12 +168,15 @@ int make_choice_select_role() {
 }
 
 bool check_password(const string& p, const string& r) {
-    fstream fin(R"(D:\Mirshod\IUT\OOP2\phone-book\employees.csv)");
+    fstream fin(R"(D:\Mirshod\IUT\OOP2\phone-book\Resource Files\employees.csv)");
     string word, line;
     vector <string> row;
 
     while(getline(fin, line)){
         row.clear();
+
+        // Owner, 12345
+        // Manager, uuuuu
 
         // parse file data to vector
         stringstream ss(line);

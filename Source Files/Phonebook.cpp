@@ -1,7 +1,9 @@
+#include <utility>
+
 #include "iostream"
 #include "vector"
-#include "SupportiveFunctions.h"
-#include "filesystem"
+#include "iomanip"
+#include "../Header Files/SupportiveFunctions.h"
 
 using namespace std;
 
@@ -32,7 +34,7 @@ Phonebook::Phonebook() {
     }
     else {
         ofstream f(filename, ios::trunc);
-        f << "ID,first_name,last_name,tel_num,country_id,position_\n";
+        f << "ID,first_name,last_name,tel_num,country_id,position\n";
         this->number_of_contacts = 0;
         f.close();
     }
@@ -45,7 +47,7 @@ Phonebook::Phonebook(const string& file) {
      * Create phonebook object with the given filename.
      */
     this->filename = file + ".csv";
-    fstream fin(filename);
+    fstream fin(filename, ios::in);
     string line, word;
     vector<string> data;
 
@@ -71,13 +73,13 @@ Phonebook::Phonebook(const string& file) {
             }
         } catch (invalid_argument&) {
             cout << "INVALID_ARGUMENT_ERROR\n";
-            cout << "STOPPING THE PROGRAMM...\n";
+            cout << "STOPPING THE PROGRAM...\n";
             exit(1);
         }
     }
     else {
         ofstream f(filename, ios::trunc);
-        f << "ID,first_name,last_name,tel_num,country_id,position_\n";
+        f << "ID,first_name,last_name,tel_num,country_id,position\n";
         this->number_of_contacts = 0;
         f.close();
     }
@@ -85,8 +87,8 @@ Phonebook::Phonebook(const string& file) {
 }
 
 
-void Phonebook::setContacts(vector<Contact> c) {
-    this->contacts = c;
+[[maybe_unused]] void Phonebook::setContacts(vector<Contact> c) {
+    this->contacts = std::move(c);
 }
 
 
@@ -224,12 +226,23 @@ void Phonebook::read_record() {
 
 
 void Phonebook::update_record() {
-    fstream fin(filename, ios::in), fout("updated.csv", ios::out);
+    ofstream fout;
     string num_to_find, country_code, new_f_name, new_l_name, new_number, new_country_code, line, word;
     optional<Contact> contact;
     optional<Country> country;
     int choice;
 
+    fout.open(this->filename, ios::trunc);
+
+    if (fout.is_open()) {
+        // write header row into contacts file
+        fout << "ID,first_name,last_name,tel_num,country_id,position\n";
+        fout << "ID,first_name,last_name,tel_num,country_id,position\n";
+
+    } else {
+        cout << "\nCould not open the file!\n";
+        return;
+    }
 
     // validate country of contact
     while (true) {
@@ -247,13 +260,12 @@ void Phonebook::update_record() {
     while (true) {
         cout << "\nInput phone number: ";
         cin >> num_to_find;
-        contact = find_contact(country_code + num_to_find, *this);
+        contact = find_contact((country_code + num_to_find), *this);
 
         if (contact.has_value())
             break;
         else
             cout << "\nPhone number not found. Try Again\n";
-
     }
 
     // display found data
@@ -265,17 +277,20 @@ void Phonebook::update_record() {
         choice = make_choice_update_contact();
         if (choice and choice != -1) {
             if (choice == 1) {
+
                 // update_first_name
                 cout << "Input new first name: ";
                 cin >> new_f_name;
                 contact->set_first_name(new_f_name);
                 break;
+
             } else if (choice == 2) {
                 // update_last_name
                 cout << "Input new last name: ";
                 cin >> new_l_name;
                 contact->set_last_name(new_l_name);
                 break;
+
             } else if (choice == 3) {
 
                 // update_number
@@ -297,47 +312,23 @@ void Phonebook::update_record() {
                     cout << "\nInput new telephone number:\n";
                     cin >> new_number;
 
+                    optional<Country> new_country = verify_country_code(new_country_code);
+
                     if (country->getCountryMaxDigits() == size(to_string(stoull(new_number)))) {
                         contact->set_tel_num(new_country_code + new_number);
+                        contact->set_country(country.value());
+
                         goto end;
                     } else
                         cout << "\nWrong Number!\n";
                 }
             }
-        } else {
+        } else
             cout << "\nIncorrect input. Try again.\n";
-            continue;
-        }
     }
 
     end:
-    // skip header row
-    getline(fin, line);
 
-    // write header row into updated.csv
-    fout << "ID,first_name,last_name,tel_num,country_id,position\n";
-
-    // copy old file into updated
-    while (getline(fin, line)) {
-        vector<string> data;
-        stringstream ss(line);
-
-        // get file data in vector data
-        while (getline(ss, word, ','))
-            data.push_back(word);
-
-        // copy everything until didn't come to needed record
-        if (stoi(data[0]) != contact->get_id())
-            fout << line;
-        else {
-            fout << contact->get_id() << ","
-                 << contact->get_first_name() << ","
-                 << contact->get_last_name() << ","
-                 << contact->get_tel_num() << ","
-                 << contact->get_country().getCountryId() << ","
-                 << contact->get_position() << "\n";
-        }
-    }
     // change updated contact in phonebook object
     for (Contact &c: this->contacts)
         if (c.get_id() == contact->get_id()) {
@@ -345,13 +336,17 @@ void Phonebook::update_record() {
             break;
         }
 
-    // close files
-    fin.close();
-    fout.close();
+    for (auto& c : this->contacts) {
+        fout << c.get_id() << ","
+             << c.get_first_name() << ","
+             << c.get_last_name() << ","
+             << c.get_tel_num() << ","
+             << c.get_country().getCountryId() << ","
+             << c.get_position() << "\n";
+    }
 
-    // Rename updated file
-    remove(this->filename.c_str());
-    rename("updated.csv", this->filename.c_str());
+    // close files
+    fout.close();
 }
 
 void Phonebook::delete_record() {
@@ -430,6 +425,26 @@ void Phonebook::read_all_records() {
     ifstream fin(this->filename);
 
     try {
+        // header row
+        cout << setfill('-') << setw(8) << "" << "+";
+        cout << setw(22) << "" << "+";
+        cout << setw(22) << "" << "+";
+        cout << setw(31) << "" << "+";
+        cout << setw(19) << "" << "+";
+        cout << setw(17) << "" << "+" << endl;
+        cout << setfill(' ') << left << setw(8) << "| ID" << "|";
+        cout << left << setw(22) << "First Name" << "|";
+        cout << left << setw(22) << "Last Name" << "|";
+        cout << left << setw(31) << "Telephone Number" << "|";
+        cout << left << setw(19) << "Country" << "|";
+        cout << left << setw(17) << "Position" << "|" << endl;
+        cout << setfill('-') << setw(8) << "" << "+";
+        cout << setw(22) << "" << "+";
+        cout << setw(22) << "" << "+";
+        cout << setw(31) << "" << "+";
+        cout << setw(19) << "" << "+";
+        cout << setw(17) << "" << "+" << endl;
+
         for (auto it = this->contacts.begin(); it < this->contacts.end(); ++it) {
             cout << *it;
         }

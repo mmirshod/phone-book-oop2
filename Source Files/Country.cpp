@@ -1,4 +1,4 @@
-#include "Country.h"
+#include "../Header Files/Country.h"
 #include "vector"
 #include "sstream"
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 optional<Country> verify_country_code(string code) {
     string temp, word;
     vector<string> countries;
-    ifstream file(R"(D:\Mirshod\IUT\OOP2\phone-book\countries.csv)");
+    ifstream file(R"(D:\Mirshod\IUT\OOP2\phone-book\Resource Files\countries.csv)");
 
     while(file >> temp) {
         countries.clear();
@@ -22,7 +22,7 @@ optional<Country> verify_country_code(string code) {
 }
 
 Country::Country(int id) {
-    ifstream f(R"(D:\Mirshod\IUT\OOP2\phone-book\countries.csv)");
+    ifstream f(R"(D:\Mirshod\IUT\OOP2\phone-book\Resource Files\countries.csv)");
     vector <string> data;
     string line, word;
 

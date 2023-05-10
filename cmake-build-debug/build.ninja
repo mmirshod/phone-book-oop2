@@ -49,11 +49,11 @@ cmake_ninja_workdir = D$:/Mirshod/IUT/OOP2/phone-book/cmake-build-debug/
 
 build cmake_object_order_depends_target_phone_book: phony || CMakeFiles/phone_book.dir
 
-build CMakeFiles/phone_book.dir/Phonebook.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Phonebook.cpp || cmake_object_order_depends_target_phone_book
-  DEP_FILE = CMakeFiles\phone_book.dir\Phonebook.cpp.obj.d
+build CMakeFiles/phone_book.dir/Source_Files/Phonebook.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Source$ Files/Phonebook.cpp || cmake_object_order_depends_target_phone_book
+  DEP_FILE = CMakeFiles\phone_book.dir\Source_Files\Phonebook.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\phone_book.dir
-  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
+  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir\Source_Files
 
 build CMakeFiles/phone_book.dir/main.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/main.cpp || cmake_object_order_depends_target_phone_book
   DEP_FILE = CMakeFiles\phone_book.dir\main.cpp.obj.d
@@ -61,29 +61,29 @@ build CMakeFiles/phone_book.dir/main.cpp.obj: CXX_COMPILER__phone_book_Debug D$:
   OBJECT_DIR = CMakeFiles\phone_book.dir
   OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
 
-build CMakeFiles/phone_book.dir/SupportiveFunctions.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/SupportiveFunctions.cpp || cmake_object_order_depends_target_phone_book
-  DEP_FILE = CMakeFiles\phone_book.dir\SupportiveFunctions.cpp.obj.d
+build CMakeFiles/phone_book.dir/Source_Files/SupportiveFunctions.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Source$ Files/SupportiveFunctions.cpp || cmake_object_order_depends_target_phone_book
+  DEP_FILE = CMakeFiles\phone_book.dir\Source_Files\SupportiveFunctions.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\phone_book.dir
-  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
+  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir\Source_Files
 
-build CMakeFiles/phone_book.dir/Country.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Country.cpp || cmake_object_order_depends_target_phone_book
-  DEP_FILE = CMakeFiles\phone_book.dir\Country.cpp.obj.d
+build CMakeFiles/phone_book.dir/Source_Files/Country.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Source$ Files/Country.cpp || cmake_object_order_depends_target_phone_book
+  DEP_FILE = CMakeFiles\phone_book.dir\Source_Files\Country.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\phone_book.dir
-  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
+  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir\Source_Files
 
-build CMakeFiles/phone_book.dir/Contact.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Contact.cpp || cmake_object_order_depends_target_phone_book
-  DEP_FILE = CMakeFiles\phone_book.dir\Contact.cpp.obj.d
+build CMakeFiles/phone_book.dir/Source_Files/Contact.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Source$ Files/Contact.cpp || cmake_object_order_depends_target_phone_book
+  DEP_FILE = CMakeFiles\phone_book.dir\Source_Files\Contact.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\phone_book.dir
-  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
+  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir\Source_Files
 
-build CMakeFiles/phone_book.dir/Employee.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Employee.cpp || cmake_object_order_depends_target_phone_book
-  DEP_FILE = CMakeFiles\phone_book.dir\Employee.cpp.obj.d
+build CMakeFiles/phone_book.dir/Source_Files/Employee.cpp.obj: CXX_COMPILER__phone_book_Debug D$:/Mirshod/IUT/OOP2/phone-book/Source$ Files/Employee.cpp || cmake_object_order_depends_target_phone_book
+  DEP_FILE = CMakeFiles\phone_book.dir\Source_Files\Employee.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\phone_book.dir
-  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir
+  OBJECT_FILE_DIR = CMakeFiles\phone_book.dir\Source_Files
 
 
 # =============================================================================
@@ -93,7 +93,7 @@ build CMakeFiles/phone_book.dir/Employee.cpp.obj: CXX_COMPILER__phone_book_Debug
 #############################################
 # Link the executable phone_book.exe
 
-build phone_book.exe: CXX_EXECUTABLE_LINKER__phone_book_Debug CMakeFiles/phone_book.dir/Phonebook.cpp.obj CMakeFiles/phone_book.dir/main.cpp.obj CMakeFiles/phone_book.dir/SupportiveFunctions.cpp.obj CMakeFiles/phone_book.dir/Country.cpp.obj CMakeFiles/phone_book.dir/Contact.cpp.obj CMakeFiles/phone_book.dir/Employee.cpp.obj
+build phone_book.exe: CXX_EXECUTABLE_LINKER__phone_book_Debug CMakeFiles/phone_book.dir/Source_Files/Phonebook.cpp.obj CMakeFiles/phone_book.dir/main.cpp.obj CMakeFiles/phone_book.dir/Source_Files/SupportiveFunctions.cpp.obj CMakeFiles/phone_book.dir/Source_Files/Country.cpp.obj CMakeFiles/phone_book.dir/Source_Files/Contact.cpp.obj CMakeFiles/phone_book.dir/Source_Files/Employee.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\phone_book.dir

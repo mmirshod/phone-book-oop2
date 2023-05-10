@@ -33,10 +33,12 @@ public:
 
     friend ostream& operator<<(ostream& out, const Contact& c);
 
+
+    void set_country(const Country& new_country);
     void set_first_name(string name);
     void set_last_name(string surname);
     void set_tel_num(string number);
-    void set_position(string position);
+    [[maybe_unused]] void set_position(string position);
     int get_id() const;
     string get_first_name();
     string get_last_name();
